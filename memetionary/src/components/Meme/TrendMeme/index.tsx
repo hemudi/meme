@@ -5,7 +5,9 @@ const TITLE_TEXT = '요즘 뜨는 밈';
 
 const getTrendMemeList = async (): Promise<{ data: Meme[] }> => {
   const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/meme/trend`);
-  if (!res.ok) throw new Error('Failed to fetch data');
+  console.log(process.env.NEXT_PUBLIC_URL);
+  console.log(res);
+  if (!res.ok) throw new Error('Failed to fetch data!!!!!!>o<');
   return res.json();
 };
 
