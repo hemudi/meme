@@ -1,3 +1,4 @@
+import { Meme } from '@/app/api/meme/data';
 import axios from 'axios';
 
 export const getMemeDetail = async ({ id }: { id: string }) => {
@@ -17,5 +18,15 @@ export const getRandomMemeId = async () => {
     return data;
   } catch (error) {
     throw error;
+  }
+};
+
+export const getTrendMemeList = async (): Promise<{ data: Meme[] }> => {
+  try {
+    const data = await axios.get(`${process.env.NEXT_PUBLIC_URL}/meme/trend`);
+    console.log(data);
+    return data;
+  } catch (error) {
+    throw new Error('Failed to fetch data!!!');
   }
 };

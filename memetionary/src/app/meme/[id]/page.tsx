@@ -4,13 +4,13 @@ import TagList from '@/components/Meme/TagList';
 import DetailAction from '@/components/Meme/DetailAction';
 import FooterDetail from '@/components/Meme/FooterDetail';
 import { getMemeDetail } from '@/api/meme';
-import Thumbnail from '@/components/Meme/Thumbnail';
 import Description from '@/components/Meme/Article';
 import Conversation from '@/components/Meme/Conversation';
 import Ping from '@/components/Meme/Ping';
 
 export default async function Meme({ params: { id } }: { params: { id: string } }) {
   const meme = await getMemeDetail({ id });
+  console.log(meme);
 
   return (
     <>
