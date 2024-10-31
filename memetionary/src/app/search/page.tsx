@@ -1,6 +1,7 @@
 'use client';
 
 import Input from '@/components/Input';
+import TrendMeme from '@/components/Meme/TrendMeme';
 import { useRouter } from 'next/navigation';
 import { ChangeEvent, KeyboardEvent, useState } from 'react';
 
@@ -18,11 +19,14 @@ export default function Search() {
   };
 
   return (
-    <section className="flex w-full flex-col items-center gap-5">
-      <h1 className="w-full text-2xl font-bold">궁금하신 밈을 검색해보세요!</h1>
-      <div className="flex w-full flex-col items-center gap-2">
-        <Input onChange={handleInputChange} onKeyDown={handleKeyDown} placeholder={'어쩔티비'} />
-      </div>
-    </section>
+    <>
+      <section className="flex w-full flex-col items-center gap-5">
+        <h1 className="w-full text-2xl font-bold">궁금하신 밈을 검색해보세요!</h1>
+        <div className="flex w-full flex-col items-center gap-2">
+          <Input onChange={handleInputChange} onKeyDown={handleKeyDown} placeholder={'어쩔티비'} />
+        </div>
+      </section>
+      <TrendMeme />
+    </>
   );
 }
