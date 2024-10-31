@@ -19,7 +19,7 @@ export const GET = async (_: Request, { params }: { params: { id: string } }) =>
   return NextResponse.json({ status: 500 });
 };
 
-export const getMeme = async (id: string) => {
+const getMeme = async (id: string) => {
   try {
     const { data } = await axios.post(
       NOTION_API_URL,
