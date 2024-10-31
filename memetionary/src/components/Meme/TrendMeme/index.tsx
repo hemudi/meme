@@ -1,18 +1,32 @@
+'use client';
+
+import { useEffect, useState } from 'react';
 import { Meme } from '@/app/api/meme/data';
 import Link from 'next/link';
 
 const TITLE_TEXT = '요즘 뜨는 밈';
 
-const getTrendMemeList = async (): Promise<{ data: Meme[] }> => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/meme/trend`);
-  console.log(process.env.NEXT_PUBLIC_URL);
-  console.log(res);
-  if (!res.ok) throw new Error('Failed to fetch data!!!!!!>o<');
-  return res.json();
-};
+const TrendMeme = () => {
+  const [trendMemeList, setTrendMemeList] = useState<Meme[]>([]);
+  const [error, setError] = useState<string | null>(null);
 
-export default async function TrendMeme() {
-  const { data: trendMemeList } = await getTrendMemeList();
+  useEffect(() => {
+    const fetchTrendMemeList = async () => {
+      try {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/meme/trend`);
+        if (!res.ok) throw new Error('Failed to fetch data');
+        const data = await res.json();
+        setTrendMemeList(data.data);
+      } catch (err) {
+        throw new Error('Failed to fetch data');
+      }
+    };
+
+    fetchTrendMemeList();
+  }, []);
+
+  if (error) return <div>Error: {error}</div>;
+
   return (
     <section className="flex w-full flex-col items-center gap-2">
       <h2 className="text-xl font-bold">{TITLE_TEXT}</h2>
@@ -30,4 +44,6 @@ export default async function TrendMeme() {
       </ul>
     </section>
   );
-}
+};
+
+export default TrendMeme;
