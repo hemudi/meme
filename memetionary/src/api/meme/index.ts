@@ -5,7 +5,6 @@ export const getMemeDetail = async ({ id }: { id: string }) => {
   try {
     // axios.default.baseUrl 합치기
     // status 500일때 처리 필요
-    console.log('얍');
     const { data } = await axios.get(`${process.env.NEXT_PUBLIC_URL}/meme/${id}`);
     return data;
   } catch (error) {
