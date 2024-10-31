@@ -5,6 +5,7 @@ export const getMemeDetail = async ({ id }: { id: string }) => {
   try {
     // axios.default.baseUrl 합치기
     // status 500일때 처리 필요
+    console.log('얍');
     const { data } = await axios.get(`${process.env.NEXT_PUBLIC_URL}/meme/${id}`);
     return data;
   } catch (error) {
@@ -21,12 +22,22 @@ export const getRandomMemeId = async () => {
   }
 };
 
-export const getTrendMemeList = async (): Promise<{ data: Meme[] }> => {
+export const getTrendMemeList = async () => {
   try {
-    const data = await axios.get(`${process.env.NEXT_PUBLIC_URL}/meme/trend`);
+    const { data } = await axios.get(`${process.env.NEXT_PUBLIC_URL}/meme/trend`);
     console.log(data);
     return data;
   } catch (error) {
-    throw new Error('Failed to fetch data!!!');
+    throw error;
   }
 };
+
+// export const getTrendMemeList = async (): Promise<{ data: Meme[] }> => {
+//   try {
+//     const data = await axios.get(`${process.env.NEXT_PUBLIC_URL}/meme/trend`);
+//     console.log(data);
+//     return data;
+//   } catch (error) {
+//     throw new Error('Failed to fetch data!!!');
+//   }
+// };

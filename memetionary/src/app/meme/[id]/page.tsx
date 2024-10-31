@@ -10,7 +10,6 @@ import Ping from '@/components/Meme/Ping';
 
 export default async function Meme({ params: { id } }: { params: { id: string } }) {
   const meme = await getMemeDetail({ id });
-  console.log(meme);
 
   return (
     <>

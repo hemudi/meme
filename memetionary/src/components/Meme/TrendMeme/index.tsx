@@ -3,19 +3,16 @@ import Link from 'next/link';
 
 const TITLE_TEXT = '요즘 뜨는 밈';
 
-// const getTrendMemeList = async (): Promise<{ data: Meme[] }> => {
-//   const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/meme/trend`);
-//   console.log(process.env.VERCEL_URL);
-//   console.log(res);
-//   if (!res.ok) throw new Error('Failed to fetch data!!!!!!>o<');
-//   return res.json();
-// };
-
-const TrendMeme = async () => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/meme/list`);
+const getTrendMemeList = async (): Promise<{ data: Meme[] }> => {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/meme/trend`);
+  console.log(process.env.NEXT_PUBLIC_URL);
   console.log(res);
   if (!res.ok) throw new Error('Failed to fetch data!!!!!!>o<');
-  const { data: trendMemeList }: { data: Meme[] } = await res.json();
+  return res.json();
+};
+
+export default async function TrendMeme() {
+  const { data: trendMemeList } = await getTrendMemeList();
   return (
     <section className="flex w-full flex-col items-center gap-2">
       <h2 className="text-xl font-bold">{TITLE_TEXT}</h2>
@@ -33,6 +30,4 @@ const TrendMeme = async () => {
       </ul>
     </section>
   );
-};
-
-export default TrendMeme;
+}
